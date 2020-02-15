@@ -6,7 +6,8 @@ class Keyboard extends React.Component {
         super(props);
 
         this.state = {
-            keys: this.createArray(),
+			keys:this.createArray(),
+   
             onClick:props.onClickFunction,
             disabledLetters: []
         }
@@ -14,12 +15,16 @@ class Keyboard extends React.Component {
 
     createArray() {
         let keys = []
-        for (let idx = 65; idx < 65 + 26; idx++) {
+        for (let idx = 65; idx < 65 + 25; idx++) {
             keys[idx - 65] = idx
         }
 
         return keys;
     }
+    
+    
+
+
 
     isKeyDisabled(keyClicked) {
         return this.state.disabledLetters.includes(keyClicked)
@@ -34,6 +39,7 @@ class Keyboard extends React.Component {
         // In the following, arrayIndex used to provide a key prop, to avoid warning
         return (
             <div className="App-keyboard">
+				<div>
                 {
                     this.state.keys.map(
                         (keyCode, arrayIndex) =>
@@ -47,7 +53,10 @@ class Keyboard extends React.Component {
                                    this.setKeyDisabled(keyCode)
                                    this.state.onClick(String.fromCharCode(keyCode))
                                }}/>)
+                               
                 }
+                </div>
+                
             </div>
         )
     }
